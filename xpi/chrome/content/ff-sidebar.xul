@@ -34,6 +34,9 @@
   <script src="ff-overlay.js"/>
 
   <vbox flex="1">
+    <hbox id="toolbar2">
+      <button label="Upload cookies" id="uploadButton" oncommand="uploadCookies()" flex="1" />
+    </hbox>
     <hbox id="toolbar">
       <button label="Start Capturing" id="captureButton" oncommand="Firesheep.toggleCapture()" flex="1" />
     </hbox>

